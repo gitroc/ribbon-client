@@ -18,8 +18,17 @@ public class CityController {
 //    }
     @Autowired
     private CityService cityService;
+
+    @Autowired
+    private CompanyService companyService;
+
     @RequestMapping(value = "/api/city/{id}", method = RequestMethod.GET)
-    public String findOneCity(@PathVariable("id") int id) {
+    public Object findOneCity(@PathVariable("id") int id) {
         return cityService.addService(id);
+    }
+
+    @RequestMapping(value = "/api/company", method = RequestMethod.GET)
+    public Object findAll() {
+        return companyService.getAll();
     }
 }

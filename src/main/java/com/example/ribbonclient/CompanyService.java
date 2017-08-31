@@ -6,14 +6,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class CityService {
+public class CompanyService {
     @Autowired
     RestTemplate restTemplate;
-    @HystrixCommand(fallbackMethod = "addServiceFallback")
-    public Object addService(int id) {
-        return restTemplate.getForEntity("http://EUREKA-SONG/api/city/" + id, Object.class).getBody();
+
+    @HystrixCommand(fallbackMethod = "getAllCompany")
+    public Object getAll() {
+        return restTemplate.getForEntity("http://EUREKA-SONG/api/company/", Object.class).getBody();
     }
-    public String addServiceFallback(int id) {
-        return "Ribbon CityService Error id = " + id;
+
+    public String getAllCompany() {
+        return "Ribbon getAllCompany Error";
     }
 }
